@@ -1,0 +1,21 @@
+class Solution(object):
+    def longestConsecutive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return 0
+            
+        consecutive = 0
+        nums = set(nums)
+        for i in nums: 
+            if i-1 in nums:# finding i in nums is O(1)
+                continue # if its not the starting sequences skip
+            else:
+                y = i+1
+                while y in nums: # if it is we find the consecutive time for it
+                    y += 1
+                y -= i
+                consecutive = max(y,consecutive)
+        return consecutive
